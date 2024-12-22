@@ -23,7 +23,7 @@ namespace Amazon.EC2.Util
     /// </summary>
     /// <remarks>
     /// <para>
-    /// Reference taken from EC2 Metadata EC2 Metadata <see href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"/>
+    /// Reference taken for EC2 Metadata rfom this url <see href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"/>
     /// </para>
     /// </remarks>
     public static class EC2Metadata
