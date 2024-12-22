@@ -315,3 +315,8 @@ namespace Amazon.EC2.Util
     }
 
         }
+/***************************************************************************************************
+ * Code that will query the metadata of an instance within AWS and provide a Json formatted output has been referred from 
+ * https://github.com/aws/aws-sdk-net/blob/master/sdk/src/Services/EC2/Custom/_bcl/Util/EC2Metadata.cs for writing C# code for functions and Variables
+ * *************************************************************************************************
+ */
