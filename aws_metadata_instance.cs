@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
-
 using Amazon.Runtime;
 using ThirdParty.Json.LitJson;
 using System.Globalization;
@@ -20,26 +19,13 @@ using Amazon.Util;
 namespace Amazon.EC2.Util
 {
     /// <summary>
-    /// EC2 Instance Metadata.
-    /// If this class is used on a non-EC2 instance, the properties in this class
-    /// will return null.
+    /// EC2 Instance Metadata details are available at AWS IP - http://169.254.169.254
     /// </summary>
     /// <remarks>
     /// <para>
-    /// Amazon EC2 instances can access instance-specific metadata, as well as data supplied when launching the instances, using a specific URI.
-    /// </para>
-    /// <para>
-    /// You can use this data to build more generic AMIs that can be modified by configuration files supplied at launch time. 
-    /// For example, if you run web servers for various small businesses, they can all use the same AMI and retrieve their content from the 
-    /// Amazon S3 bucket you specify at launch. To add a new customer at any time, simply create a bucket for the customer, add their content, 
-    /// and launch your AMI.
-    /// </para>
-    /// <para>
-    /// More information about EC2 Metadata <see href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"/>
+    /// Reference taken from EC2 Metadata EC2 Metadata <see href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html"/>
     /// </para>
     /// </remarks>
-    [Obsolete("This class is deprecated and will be removed in a future release." 
-              + " Please update your code to use the Amazon.Util.EC2InstanceMetadata class, located in the AWSSDK.Core assembly.")]
     public static class EC2Metadata
     {
         private static string
