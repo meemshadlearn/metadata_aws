@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
-
 using Amazon.Runtime;
 using ThirdParty.Json.LitJson;
 using System.Globalization;
