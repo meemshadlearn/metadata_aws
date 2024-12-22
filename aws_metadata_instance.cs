@@ -1,5 +1,5 @@
 /***************************************************************************************************
- * Code that will query/get the metadata of an instance within AWS and provide a Json formatted output 
+ * Code that will query the metadata of an instance within AWS and provide a Json formatted output 
  * *************************************************************************************************
  */
 
@@ -232,89 +232,9 @@ namespace Amazon.EC2.Util
         }
 
     }
-
-    /// <summary>
-    /// Returns information about the last time the instance profile was updated, 
-    /// including the instance's LastUpdated date, InstanceProfileArn, and InstanceProfileId.
-    /// </summary>
-  
-    public class IAMInfo
-    {
-        /// <summary>
-        /// The status of the instance profile
-        /// </summary>
-        public string Code { get; set; }
-
-        /// <summary>
-        /// Further information about the status of the instance profile
-        /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        /// The date and time the instance profile was updated
-        /// </summary>
-        public DateTime LastUpdated { get; set; }
-
-        /// <summary>
-        /// The Amazon Resource Name (ARN) of the instance profile
-        /// </summary>
-        public string InstanceProfileArn { get; set; }
-
-        /// <summary>
-        /// The Id of the instance profile
-        /// </summary>
-        public string InstanceProfileId { get; set; }
     }
-
-    /// <summary>
-    /// The temporary security credentials (AccessKeyId, SecretAccessKey, SessionToken, and Expiration) associated with the IAM role.
-    /// </summary>
-
-    public class IAMSecurityCredential
-    {
-        /// <summary>
-        /// The status of the security credential
-        /// </summary>
-        public string Code { get; set; }
-
-        /// <summary>
-        /// Further information about the status of the instance profile
-        /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        /// The date and time the security credential was last updated
-        /// </summary>
-        public DateTime LastUpdated { get; set; }
-
-        /// <summary>
-        /// The type of the security credential
-        /// </summary>
-        public string Type { get; set; }
-
-        /// <summary>
-        /// The uniqe id of the security credential
-        /// </summary>
-        public string AccessKeyId { get; set; }
-
-        /// <summary>
-        /// The secret key used to sign requests
-        /// </summary>
-        public string SecretAccessKey { get; set; }
-        
-        /// <summary>
-        /// The security token
-        /// </summary>
-        public string Token { get; set; }
-
-        /// <summary>
-        /// The date and time when these credentials expire
-        /// </summary>
-        public DateTime Expiration { get; set; }
-    }
-
-        }
-/***************************************************************************************************
+	
+	/***************************************************************************************************
  * Code that will query the metadata of an instance within AWS and provide a Json formatted output has been referred from 
  * https://github.com/aws/aws-sdk-net/blob/master/sdk/src/Services/EC2/Custom/_bcl/Util/EC2Metadata.cs for writing C# code for functions and Variables
  * *************************************************************************************************
