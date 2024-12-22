@@ -1,5 +1,5 @@
 /***************************************************************************************************
- * Code that will query the metadata of an instance within AWS and provide a Json formatted output 
+ * Code that will query/get the metadata of an instance within AWS and provide a Json formatted output 
  * *************************************************************************************************
  */
 
