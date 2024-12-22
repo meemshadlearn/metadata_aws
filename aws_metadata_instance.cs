@@ -1,5 +1,5 @@
 /***************************************************************************************************
- * Code that will query the metadata of an instance within AWS and provide a Json formatted output, this code may require more enhancement,but now its intendent to get basic metadata (data of  daya) information of EC2 instance
+ * Code that will query the metadata of an instance within AWS and provide a Json formatted output, this code may require more enhancement,but now its intendent to get basic metadata (data of data) information of EC2 instance
  * *************************************************************************************************
  */
 
