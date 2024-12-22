@@ -40,7 +40,6 @@ namespace Amazon.EC2.Util
             MAX_RETRIES = 3; 
 
         private static Dictionary<string, string> _cache = new Dictionary<string, string>();
-
         private static readonly string _userAgent = InternalSDKUtils.BuildUserAgentString(string.Empty);
 
         /// <summary>
@@ -65,15 +64,6 @@ namespace Amazon.EC2.Util
         public static string AmiManifestPath
         {
             get { return FetchData("/ami-manifest-path"); }
-        }
-
-        /// <summary>
-        /// The AMI IDs of any instances that were rebundled to create this AMI. 
-        /// Will only exist if the AMI manifest file contained an ancestor-amis key.
-        /// </summary>
-        public static IEnumerable<string> AncestorAmiIds
-        {
-            get { return GetItems("/ancestor-ami-ids"); }
         }
 
         /// <summary>
@@ -112,23 +102,6 @@ namespace Amazon.EC2.Util
         }
 
         /// <summary>
-        /// The ID of the kernel launched with this instance, if applicable.
-        /// </summary>
-        public static string KernelId
-        {
-            get { return GetData("kernel-id"); }
-        }
-
-        /// <summary>
-        /// The local hostname of the instance. In cases where multiple network interfaces are present, 
-        /// this refers to the eth0 device (the device for which device-number is 0).
-        /// </summary>
-        public static string LocalHostname
-        {
-            get { return FetchData("/local-hostname"); }
-        }
-
-        /// <summary>
         /// The instance's MAC address. In cases where multiple network interfaces are present, 
         /// this refers to the eth0 device (the device for which device-number is 0).
         /// </summary>
@@ -155,14 +128,6 @@ namespace Amazon.EC2.Util
         }
 
         /// <summary>
-        /// Product codes associated with the instance, if any. 
-        /// </summary>
-        public static IEnumerable<string> ProductCodes
-        {
-            get { return GetItems("/product-codes"); }
-        }
-
-        /// <summary>
         /// Public key. Only available if supplied at instance launch time.
         /// </summary>
         public static string PublicKey
@@ -179,95 +144,11 @@ namespace Amazon.EC2.Util
         }
 
         /// <summary>
-        /// ID of the reservation.
-        /// </summary>
-        public static string ReservationId
-        {
-            get { return FetchData("/reservation-id"); }
-        }
-
-        /// <summary>
         /// The names of the security groups applied to the instance. 
         /// </summary>
         public static IEnumerable<string> SecurityGroups
         {
             get { return GetItems("/security-groups"); }
-        }
-
-        /// <summary>
-        /// Returns information about the last time the instance profile was updated, 
-        /// including the instance's LastUpdated date, InstanceProfileArn, and InstanceProfileId.
-        /// </summary>
-        public static IAMInfo IAMInstanceProfileInfo
-        {
-            get
-            {
-                var json = GetData("/iam/info");
-                if (null == json)
-                    return null;
-                IAMInfo info;
-                try
-                {
-                    info = JsonMapper.ToObject<IAMInfo>(json);
-                }
-                catch 
-                { 
-                    info = new IAMInfo { Code = "Failed", Message = "Could not parse response from metadata service." }; 
-                }
-                return info;
-            }
-        }
-
-        /// <summary>
-        /// Returns the temporary security credentials (AccessKeyId, SecretAccessKey, SessionToken, and Expiration) 
-        /// associated with the IAM roles on the instance.
-        /// </summary>
-        public static IDictionary<string, IAMSecurityCredential> IAMSecurityCredentials
-        {
-            get
-            {
-                var list = GetItems("/iam/security-credentials");
-                if (list == null)
-                    return null;
-
-                var creds = new Dictionary<string, IAMSecurityCredential>();
-                foreach (var item in list)
-                {
-                    var json = GetData("/iam/security-credentials/" + item);
-                    try
-                    {
-                        var cred = JsonMapper.ToObject<IAMSecurityCredential>(json);
-                        creds[item] = cred;
-                    }
-                    catch 
-                    {
-                        creds[item] = new IAMSecurityCredential { Code = "Failed", Message = "Could not parse response from metadata service." };
-                    }
-                }
-
-                return creds;
-            }
-        }
-
-        /// <summary>
-        /// The virtual devices associated with the ami, root, ebs, and swap.
-        /// </summary>
-        public static IDictionary<string, string> BlockDeviceMapping
-        {
-            get
-            {
-                var keys = GetItems("/block-device-mapping");
-                if (keys == null)
-                    return null;
-
-                var mapping = new Dictionary<string, string>();
-                foreach (var key in keys)
-                {
-                    mapping[key] = GetData("/block-device-mapping/" + key);
-                }
-
-                return mapping;
-            }
         }
 
         /// <summary>
@@ -296,9 +177,7 @@ namespace Amazon.EC2.Util
         public static string UserData
         {
             get 
-            { 
-                return GetData(EC2_USERDATA_ROOT); 
-            }
+            { return GetData(EC2_USERDATA_ROOT); }
         }
 
         /// <summary>
